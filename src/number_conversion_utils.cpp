@@ -4,7 +4,9 @@
 using std::min;
 using std::max;
 
-const string fixedWidthSpace = " ";
+// const string fixedWidthSpace = "\xe3\x80\x80"; // Full width space
+const string fixedWidthSpace = "\x20"; // ASCII space
+// const string fixedWidthSpace = "\x20\x20"; // 2 ASCII spaces
 
 string intToString(int in)
 {
@@ -112,7 +114,8 @@ double stringToDouble(string in)
 
 const vector<string> verticalBarStrs = {fixedWidthSpace, "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"};
 const vector<string> horizontalBarStrs = {fixedWidthSpace, "▏", "▎", "▍", "▌", "▋", "▊", "▉", "█"};
-const vector<string> pieChartStrs = {"○", "◔", "◑", "◕", "●"};
+const vector<string> pieChartStrs = {fixedWidthSpace, "◜", "◠", "◠", "○", "○", "◔", "◑", "◕", "●"};
+const vector<string> dotStrs = {fixedWidthSpace, "◌", "○", "◎", "◉", "●"};
 const vector<string> circleSpinnerStrs = {"◜", "◝", "◞", "	◟"};
 
 string verticalBar(double val)
@@ -161,3 +164,8 @@ string pieChart(double val)
 	return pieChartStrs[i];
 }
 
+string dot(double val)
+{
+	int i=min(floor(val * dotStrs.size()), (double)dotStrs.size()-1);
+	return dotStrs[i];
+}

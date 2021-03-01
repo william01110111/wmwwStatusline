@@ -1,6 +1,6 @@
 #include "Plugin.h"
 
-const string PluginBase::plaintextSeparator = " | ";
+const string PluginBase::plaintextSeparator = ": ";
 
 string PluginBase::getJson()
 {
@@ -126,13 +126,17 @@ std::function<string(double)> getDoubleToStringFunc(ConfigData * config)
 	{
 		return doubleAsPercent;
 	}
-	if (style == "v_bar")
+	else if (style == "v_bar")
 	{
 		return verticalBar;
 	}
-	if (style == "pie")
+	else if (style == "pie")
 	{
 		return pieChart;
+	}
+	else if (style == "dot")
+	{
+		return dot;
 	}
 	else if (style == "h_bar")
 	{
